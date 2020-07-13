@@ -1,0 +1,399 @@
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="dataEntryStyling.css" media="screen"/>
+
+<!--
+     -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>FaCT (Funding and Clearances Truths) Data Entry Form</title>
+  </head>
+
+  <body>
+    <h1>FaCT (Funding and Clearances Truths) Data Entry Form</h1>
+
+
+    <form id="factData">
+      <p>Company Name:</p>
+      <textarea rows = "6" cols = "50" id = "company" name = "companyName"></textarea>
+      <p>Source: MobiHealthNews URLs</p>
+      <textarea rows = "6" cols = "50" id = "sourceMobi" name = "sourceMobi"></textarea>
+      <p>Source: MobiHealthNews URLs</p>
+      <textarea rows = "6" cols = "50" id = "sourceMobi" name = "sourceMobi"></textarea>
+      <p>Source: CipherBio URLs</p>
+      <textarea rows = "6" cols = "50" id = "sourceCipher" name = "sourceCipher"></textarea>
+      <p>Source: Rock Health URLS</p>
+      <textarea rows = "6" cols = "50" id = "sourceRock" name = "sourceRock"></textarea>
+      <p>Source: BizWire URLs</p>
+      <textarea rows = "6" cols = "50" id = "sourceBiz" name = "sourceBiz"></textarea>
+      <p>Source: MedCity News URLs</p>
+      <textarea rows = "6" cols = "50" id = "sourceMed" name = "sourceMed"></textarea>
+      <p>Source: Other URLs</p>
+      <textarea rows = "6" cols = "50" id = "sourceOther" name = "sourceOther"></textarea>
+      <p>Source: MobiHealthNews Full-Text Paste</p>
+      <textarea rows = "6" cols = "50" id = "sourceTextMobi" name = "sourceTextMobi"></textarea>
+      <p>Source: CipherBio Full-Text Paste</p>
+      <textarea rows = "6" cols = "50" id = "sourceTextCipher" name = "sourceTextCipher"></textarea>
+      <p>Source: Rock Health Full-Text Paste</p>
+      <textarea rows = "6" cols = "50" id = "sourceTextRock" name = "sourceTextRock"></textarea>
+      <p>Source: BizWire Full-Text Paste</p>
+      <textarea rows = "6" cols = "50" id = "sourceTextBiz" name = "sourceTextBiz"></textarea>
+      <p>Source: MedCity Full-Text Paste</p>
+      <textarea rows = "6" cols = "50" id = "sourceTextMed" name = "sourceTextMed"></textarea>
+      <p>Source: Other Full-Text Paste</p>
+      <textarea rows = "6" cols = "50" id = "sourceTextOther" name = "sourceTextOther"></textarea>
+      <p>Date of Funding: must be in "yyyy-MM-dd" format</p>
+      <input type = "text" id ="date" name = "date">
+      <p>Editor Notes:</p>
+      <textarea rows = "6" cols = "50" id = "editorNotes" name = "editorNotes"></textarea>
+      <p>Scope:</p>
+      <input type="radio" id="In-Scope" name="scope" value="In-Scope">
+      <label for="In-Scope">In-Scope</label><br>
+      <input type="radio" id="Out-of-Scope" name="scope" value="Out-of-Scope">
+      <label for="Out-of-Scope">Out-of-Scope</label><br>
+      <input type="radio" id="Unsure - needs review" name="scope" value="Unsure - needs review">
+      <label for="Unsure - needs review">Unsure - needs review</label><br>
+      <p>Explanation for Scope Decision:</p>
+      <textarea rows = "6" cols = "50" id = "scopeReason" name = "Scope Reason"></textarea>
+      <p>Type of Device:</p>
+      <input type="radio" id="CMMD" name="deviceType" value="CMMD">
+      <label for="CMMD">CMMD</label><br>
+      <input type="radio" id="SaMD" name="deviceType" value="SaMD">
+      <label for="SaMD">SaMD</label><br>
+      <input type="radio" id="Connected Health (non-device)" name="deviceType" value="Connected Health (non-device)">
+      <label for="Connected Health (non-device)">Connected Health (non-device)</label><br>
+      <input type="radio" id="Neither" name="deviceType" value="Neither">
+      <label for="Neither">Neither</label><br>
+      <p>Purpose of the Device: Check all that apply</p>
+      <input type = "checkbox" id = "devicePurpose" name = "devicePurpose" value = "Diagnostic">
+      <label for="Diagnostic">Diagnostic</label><br>
+      <input type = "checkbox" id = "devicePurpose" name = "devicePurpose" value = "Monitoring">
+      <label for="Monitoring">Monitoring</label><br>
+      <input type = "checkbox" id = "devicePurpose" name = "devicePurpose" value = "Non-Digital Therapeutic">
+      <label for="Non-Digital Therapeutic">Non-Digital Therapeutic</label><br>
+      <p>If therapeutic: Check all that apply, otherwise leave blank</p>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "Artificial Pancreas">
+      <label for="Artificial Pancreas">Artificial Pancreas</label><br>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "Brain Stimulation">
+      <label for="Brain Stimulation">Brain Stimulation</label><br>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "Hearing Aids">
+      <label for="Hearing Aids">Hearing Aids</label><br>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "Infusion Pump">
+      <label for="Infusion Pump">Infusion Pump</label><br>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "Interventional Radiology (IR)">
+      <label for="Interventional Radiology (IR)">Interventional Radiology (IR)</label><br>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "Muscle Stimulation">
+      <label for="Muscle Stimulation">Muscle Stimulation</label><br>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "Nerve Stimulation / Neurostimulation / Neuromodulation">
+      <label for="Nerve Stimulation / Neurostimulation / Neuromodulation">Nerve Stimulation / Neurostimulation / Neuromodulation</label><br>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "Neuromodulation">
+      <label for="Neuromodulation">Neuromodulation</label><br>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "Pacemaker">
+      <label for="Pacemaker">Pacemaker</label><br>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "Radiation Therapy">
+      <label for="Radiation Therapy">Radiation Therapy</label><br>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "Surgery">
+      <label for="Surgery">Surgery</label><br>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "Orthopedic Surgery">
+      <label for="Orthopedic Surgery">Orthopedic Surgery</label><br>
+      <input type = "checkbox" id = "therapeutic" name = "therapeutic" value = "TENS">
+      <label for="TENS">TENS</label><br>
+      <p>Digital therapeutic:</p>
+      <input type="radio" id="Yes" name="digitalTherapeutic" value="Yes">
+      <label for="Yes">Yes</label><br>
+      <input type="radio" id="No" name="digitalTherapeutic" value="No">
+      <label for="No">No</label><br>
+      <p>Regulatory Type and Device Classification:</p>
+      <textarea rows = "6" cols = "50" id = "classification" name = "classification"></textarea>
+      <p>Device Characteristics: Check all that apply</p>
+      <input type = "checkbox" id = "deviceCharacteristics" name = "deviceCharacteristics" value = "Biologic">
+      <label for="Biologic">Biologic</label><br>
+      <input type = "checkbox" id = "deviceCharacteristics" name = "deviceCharacteristics" value = "Pharma">
+      <label for="Pharma">Pharma</label><br>
+      <input type = "checkbox" id = "deviceCharacteristics" name = "deviceCharacteristics" value = "Device">
+      <label for="Device">Device</label><br>
+      <input type = "checkbox" id = "deviceCharacteristics" name = "deviceCharacteristics" value = "In-Vitro Diagnostic">
+      <label for="In-Vitro Diagnostic">In-Vitro Diagnostic</label><br>
+      <p>Description of the Company:</p>
+      <textarea rows = "6" cols = "50" id = "companyDescription" name = "companyDescription"></textarea>
+      <p>Series:</p>
+      <input type="radio" id="Seed Stage" name="series" value="Seed Stage">
+      <label for="Seed Stage">Seed Stage</label><br>
+      <input type="radio" id="Series A" name="series" value="Series A">
+      <label for="Series A">Series A</label><br>
+      <input type="radio" id="Series B" name="series" value="Series B">
+      <label for="Series B">Series B</label><br>
+      <input type="radio" id="Series C" name="series" value="Series C">
+      <label for="Series C">Series C</label><br>
+      <input type="radio" id="Series D" name="series" value="Series D">
+      <label for="Series D">Series D</label><br>
+      <input type="radio" id="Not Available" name="series" value="Not Available">
+      <label for="Not Available">Not Available</label><br>
+      <input type="radio" id="Private Equity Transaction" name="series" value="Private Equity Transaction">
+      <label for="Private Equity Transaction">Private Equity Transaction</label><br>
+      <input type="radio" id="M&A Transaction" name="series" value="M&A Transaction">
+      <label for="M&A Transaction">M&A Transaction</label><br>
+      <input type="radio" id="Other" name="series" value="Other">
+      <label for="Other">Other</label><br>
+      <p>Investment Amount:</p>
+      <input type = "text" id = "investment" name = "investment">
+      <p>Description of the Investment:</p>
+      <textarea rows = "6" cols = "50" id = "investmentDescription" name = "investmentDescription"></textarea>
+      <p>Lead Investor: if available</p>
+      <textarea rows = "6" cols = "50" id = "leadInvestor" name = "leadInvestor"></textarea>
+      <p>Additional Investors:</p>
+      <textarea rows = "6" cols = "50" id = "investors" name = "investors"></textarea>
+      <p>In/Out of Hospital:</p>
+      <input type="radio" id="In" name="hospital" value="In">
+      <label for="In">In</label><br>
+      <input type="radio" id="Out" name="hospital" value="Out">
+      <label for="Out">Out</label><br>
+      <input type="radio" id="Both" name="hospital" value="Both">
+      <label for="Both">Both</label><br>
+      <p>Company Website:</p>
+      <textarea rows = "6" cols = "50" id = "website" name = "Company Website"></textarea>
+      <p>Disease State: Check all that apply</p>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Arthritis">
+      <label for="Arthritis">Arthritis</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Asthma">
+      <label for="Asthma">Asthma</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Physical Trauma (brain)">
+      <label for="Physical Trauma (brain)">Physical Trauma (brain)</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Physical Trauma (non-brain)">
+      <label for="Physical Trauma (non-brain)">Physical Trauma (non-brain)</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Cancer">
+      <label for="Cancer">Cancer</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Chronic Obstructive Pulmonary Disease (COPD)">
+      <label for="Chronic Obstructive Pulmonary Disease (COPD)">Chronic Obstructive Pulmonary Disease (COPD)</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Diabetes">
+      <label for="Diabetes">Diabetes</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Headache">
+      <label for="Headache">Headache</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Cardiovascular Disease">
+      <label for="Cardiovascular Disease">Cardiovascular Disease</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Incontinence">
+      <label for="Incontinence">Incontinence</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Infectious Disease">
+      <label for="Infectious Disease">Infectious Disease</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Mental Illness and Wellness">
+      <label for="Mental Illness and Wellness">Mental Illness and Wellness</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Neurodegenerative">
+      <label for="Neurodegenerative">Neurodegenerative</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Pain (chronic)">
+      <label for="Pain (chronic)">Pain (chronic)</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Pain (acute)">
+      <label for="Pain (acute)">Pain (acute)</label><br>
+      <input type = "checkbox" id = "disease" name = "disease" value = "Sleep Apnea">
+      <label for="Sleep Apnea">Sleep Apnea</label><br>
+      <p>Medical Specialty: Check all that apply</p>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Primary Care - Adult Internal Medicine, Family Medicine">
+      <label for="Primary Care - Adult Internal Medicine, Family Medicine">Primary Care - Adult Internal Medicine, Family Medicine</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Anesthesiology & Pain Management">
+      <label for="Anesthesiology & Pain Management">Anesthesiology & Pain Management</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Cardiology">
+      <label for="Cardiology">Cardiology</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Dentistry, Oral Surgery, Orthodontics">
+      <label for="Dentistry, Oral Surgery, Orthodontics">Dentistry, Oral Surgery, Orthodontics</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Electrophysiology">
+      <label for="Electrophysiology">Electrophysiology</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Endocrinology">
+      <label for="Endocrinology">Endocrinology</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Gastroenterology">
+      <label for="Gastroenterology">Gastroenterology</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Geriatrics">
+      <label for="Geriatrics">Geriatrics</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Immunology (incl Rheumatology)">
+      <label for="Immunology (incl Rheumatology)">Immunology (incl Rheumatology)</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Infectious Disease & Tropical Medicine">
+      <label for="Infectious Disease & Tropical Medicine">Infectious Disease & Tropical Medicine</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Nephrology">
+      <label for="Nephrology">Nephrology</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Neurology">
+      <label for="Neurology">Neurology</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Gynecology">
+      <label for="Gynecology">Gynecology</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Obstetrics">
+      <label for="Obstetrics">Obstetrics</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Oncology & Radiation Oncology">
+      <label for="Oncology & Radiation Oncology">Oncology & Radiation Oncology</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Opthamology & Optometry">
+      <label for="Opthamology & Optometry">Opthamology & Optometry</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Orthopedics">
+      <label for="Orthopedics">Orthopedics</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Otolarentology (ENT), Audiology & Speech Therapy">
+      <label for="Otolarentology (ENT), Audiology & Speech Therapy">Otolarentology (ENT), Audiology & Speech Therapy</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Pathology">
+      <label for="Pathology">Pathology</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Pediatrics & Family Medicine">
+      <label for="Pediatrics & Family Medicine">Pediatrics & Family Medicine</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Physiatry, Physical Therapy, Occupational Therapy, Rehabilitative Medicine, Chiropractic">
+      <label for="Physiatry, Physical Therapy, Occupational Therapy, Rehabilitative Medicine, Chiropractic">Physiatry, Physical Therapy, Occupational Therapy, Rehabilitative Medicine, Chiropractic</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Psychology & Psychiatry">
+      <label for="Psychology & Psychiatry">Psychology & Psychiatry</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Pulmonology">
+      <label for="Pulmonology">Pulmonology</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Sleep Medicine">
+      <label for="Sleep Medicine">Sleep Medicine</label><br>
+      <input type = "checkbox" id = "specialty" name = "specialty" value = "Urology">
+      <label for="Urology">Urology</label><br>
+      <p>Information Technology: Check all that apply</p>
+      <input type = "checkbox" id = "informationTechnology" name = "informationTechnology" value = "AI / ML / Advanced Analytics">
+      <label for="AI / ML / Advanced Analytics">AI / ML / Advanced Analytics</label><br>
+      <input type = "checkbox" id = "informationTechnology" name = "informationTechnology" value = "Bluetooth">
+      <label for="Bluetooth">Bluetooth</label><br>
+      <input type = "checkbox" id = "informationTechnology" name = "informationTechnology" value = "Cellular">
+      <label for="Cellular">Cellular</label><br>
+      <input type = "checkbox" id = "informationTechnology" name = "informationTechnology" value = "Cloud / DevOps">
+      <label for="Cloud / DevOps">Cloud / DevOps</label><br>
+      <input type = "checkbox" id = "informationTechnology" name = "informationTechnology" value = "Mobile / Smartphone">
+      <label for="Mobile / Smartphone">Mobile / Smartphone</label><br>
+      <input type = "checkbox" id = "informationTechnology" name = "informationTechnology" value = "Sensors">
+      <label for="Sensors">Sensors</label><br>
+      <p>Medical Technology: Check all that apply</p>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Active Implant">
+      <label for="Active Implant">Active Implant</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Implant">
+      <label for="Implant">Implant</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Biosensors">
+      <label for="Biosensors">Biosensors</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Connected Mobile Medical Device (CMMD)">
+      <label for="Connected Mobile Medical Device (CMMD)">Connected Mobile Medical Device (CMMD)</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Consumer Health (non-regulated)">
+      <label for="Consumer Health (non-regulated)">Consumer Health (non-regulated)</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Diagnostic">
+      <label for="Diagnostic">Diagnostic</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Dialysis">
+      <label for="Dialysis">Dialysis</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Digital Therapeutic (no physical)">
+      <label for="Digital Therapeutic (no physical)">Digital Therapeutic (no physical)</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Digital Stethoscope">
+      <label for="Digital Stethoscope">Digital Stethoscope</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Drug Delivery">
+      <label for="Drug Delivery">Drug Delivery</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Environmental Sensors">
+      <label for="Environmental Sensors">Environmental Sensors</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Medical Informatics">
+      <label for="Medical Informatics">Medical Informatics</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "In-Patient Monitoring">
+      <label for="In-Patient Monitoring">In-Patient Monitoring</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "In-Vitro Diagnostics">
+      <label for="In-Vitro Diagnostics">In-Vitro Diagnostics</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "In-Vivo Diagnostics">
+      <label for="In-Vivo Diagnostics">In-Vivo Diagnostics</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Medical Imaging">
+      <label for="Medical Imaging">Medical Imaging</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Monitoring">
+      <label for="Monitoring">Monitoring</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Laboratory Equipment">
+      <label for="Laboratory Equipment">Laboratory Equipment</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Remote Monitoring">
+      <label for="Remote Monitoring">Remote Monitoring</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Smart Digital Thermometer">
+      <label for="Smart Digital Thermometer">Smart Digital Thermometer</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Software as a Medical Device (SaMD)">
+      <label for="Software as a Medical Device (SaMD)">Software as a Medical Device (SaMD)</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Therapeutic">
+      <label for="Therapeutic">Therapeutic</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Wearable">
+      <label for="Wearable">Wearable</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Pulse Oximetry">
+      <label for="Pulse Oximetry">Pulse Oximetry</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Blood Glucose Monitoring / Glucose Strips">
+      <label for="Blood Glucose Monitoring / Glucose Strips">Blood Glucose Monitoring / Glucose Strips</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Blood Pressure Monitoring">
+      <label for="Blood Pressure Monitoring">Blood Pressure Monitoring</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Cardiac monitoring - Electrocardiograph / ECG / ECK / Echocardiogram">
+      <label for="Cardiac monitoring - Electrocardiograph / ECG / ECK / Echocardiogram">Cardiac monitoring - Electrocardiograph / ECG / ECK / Echocardiogram</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Continuous Glucose Monitoring (CGM)">
+      <label for="Continuous Glucose Monitoring (CGM)">Continuous Glucose Monitoring (CGM)</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "EEG">
+      <label for="EEG">EEG</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Sleep Monitoring">
+      <label for="Sleep Monitoring">Sleep Monitoring</label><br>
+      <input type = "checkbox" id = "medicalTechnology" name = "medicalTechnology" value = "Vital Signs Monitoring">
+      <label for="Vital Signs Monitoring">Vital Signs Monitoring</label><br>
+      <p>Regions: Check all that apply</p>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Asia">
+      <label for="Asia">Asia</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Bay Area">
+      <label for="Bay Area">Bay Area</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Boston">
+      <label for="Boston">Boston</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Central Europe">
+      <label for="Central Europe">Central Europe</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Chicagoland">
+      <label for="Chicagoland">Chicagoland</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "China">
+      <label for="China">China</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "DC Metro">
+      <label for="DC Metro">DC Metro</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Europe">
+      <label for="Europe">Europe</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Japan">
+      <label for="Japan">Japan</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Midwest (Excluding Chicagoland)">
+      <label for="Midwest (Excluding Chicagoland)">Midwest (Excluding Chicagoland)</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "North America">
+      <label for="North America">North America</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Northern Europe">
+      <label for="Northern Europe">Northern Europe</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "NY Metro">
+      <label for="NY Metro">NY Metro</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Socal">
+      <label for="Socal">Socal</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Twin Cities">
+      <label for="Twin Cities">Twin Cities</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Western Europe">
+      <label for="Western Europe">Western Europe</label><br>
+      <input type = "checkbox" id = "regions" name = "regions" value = "Israel">
+      <label for="Israel">Israel</label><br>
+      <p>Body System: Check all that apply</p>
+      <input type = "checkbox" id = "bodySystem" name = "bodySystem" value = "Immune System">
+      <label for="Immune System">Immune System</label><br>
+      <input type = "checkbox" id = "bodySystem" name = "bodySystem" value = "Brain & Central Nervous System">
+      <label for="Brain & Central Nervous System">Brain & Central Nervous System</label><br>
+      <input type = "checkbox" id = "bodySystem" name = "bodySystem" value = "Cardiovascular System">
+      <label for="Cardiovascular System">Cardiovascular System</label><br>
+      <input type = "checkbox" id = "bodySystem" name = "bodySystem" value = "Digestive">
+      <label for="Digestive">Digestive</label><br>
+      <input type = "checkbox" id = "bodySystem" name = "bodySystem" value = "Ears, Nose, and Throat (ENT)">
+      <label for="Ears, Nose, and Throat (ENT)">Ears, Nose, and Throat (ENT)</label><br>
+      <input type = "checkbox" id = "bodySystem" name = "bodySystem" value = "Endocrine">
+      <label for="Endocrine">Endocrine</label><br>
+      <input type = "checkbox" id = "bodySystem" name = "bodySystem" value = "Genetics">
+      <label for="Genetics">Genetics</label><br>
+      <input type = "checkbox" id = "bodySystem" name = "bodySystem" value = "Musculoskeletal">
+      <label for="Musculoskeletal">Musculoskeletal</label><br>
+      <input type = "checkbox" id = "bodySystem" name = "bodySystem" value = "Renal/Kidneys">
+      <label for="Renal/Kidneys">Renal/Kidneys</label><br>
+      <input type = "checkbox" id = "bodySystem" name = "bodySystem" value = "Respiratory/Lungs">
+      <label for="Respiratory/Lungs">Respiratory/Lungs</label><br>
+      <input type = "checkbox" id = "bodySystem" name = "bodySystem" value = "Teeth">
+      <label for="Teeth">Teeth</label><br>
+      <p>Body Lifecycle Stage</p>
+      <input type="radio" id="Aging" name="lifecycleStage" value="Aging">
+      <label for="Aging">Aging</label><br>
+      <input type="radio" id="Pregnancy" name="lifecycleStage" value="Pregnancy">
+      <label for="Pregnancy">Pregnancy</label><br>
+      <input type="radio" id="Child" name="lifecycleStage" value="Child">
+      <label for="Child">Child</label><br>
+      <input type="radio" id="Neither" name="lifecycleStage" value="Neither">
+      <label for="Neither">Neither</label><br>
+      <p>Other tags of interest: Check all that apply</p>
+      <input type = "checkbox" id = "other" name = "other" value = "Agile">
+      <label for="Agile">Agile</label><br>
+      <input type = "checkbox" id = "other" name = "other" value = "Lean UX">
+      <label for="Lean UX">Lean UX</label><br>
+      <input type = "checkbox" id = "other" name = "other" value = "Person-Based Analytics">
+      <label for="Person-Based Analytics">Person-Based Analytics</label><br>
+      <input type="submit" value="Submit Document" name="submit" />
+    </form>
+
+
+    <script type="text/javascript" src="dataValidation.js"></script>
+    <!--todo write a script so that the submit button:
+        1. (optional) gives a popup that says are you sure you are ready to submit
+        2. begins the logic of the data pipeline/validation script
+      -->
+
+  </body>
+</html>
