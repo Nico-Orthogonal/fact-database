@@ -1,32 +1,39 @@
+var AWS = require('aws-sdk');
 
+var region = 'us-east-2'; // e.g. us-west-1
+var domain = 'https://search-fact-test-yz276ecq43nejd37tqjsbioht4.us-east-2.es.amazonaws.com'; // e.g. search-domain.region.es.amazonaws.com
+var index = 'fact-test';
+var type = '_doc';
+var id = '1';
 
 const form = document.querySelector('form');
+var dataToJSON = [];
 let post = true;
 let errorMsg = "Pipeline failed because: ";
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   dataPipeline();
-  console.log("Logged");
 })
 
-//todo Data pipeline which creates the JSON object and sends it to the elastic search clusters
+//Data pipeline which creates the JSON object and sends it to the elastic search clusters
 function dataPipeline() {
   var data = createJsonObject();
   console.log(data);
-  //dataValidation(data);
+  dataValidation(data);
   if(post) {
+    dataToJSON.push(data);
     postJsonObject(data);
-    console.log("Form is ready to post");
+    console.log("Logged");
   } else {
     alert(errorMsg);
+    console.log("Not Logged");
   }
 }
 
-//todo Checks the text fields for data (In Scope should have ___ filled fields, Out of Scope we have defined what we want)
+//Checks the text fields for data (In Scope should have ___ filled fields, Out of Scope we have defined what we want)
 //todo runs the general logic of the program, contains all the function calls
 function dataValidation(dataEntry) {
-//Date is already checked in the createJsonObject() function
 /*
 if dataPoint.scope == "In-Scope" && company name, date of funding, scope,
 explanation for scope decision, type of device, purpose of the device, digital therapeutic,
@@ -37,6 +44,10 @@ if dataPoint.scope == "Out-of-Scope" && company name, date of funding,
 editor notes, scope, explanation for scope decision, type of device,
 purpose of the device, digital therapeutic, device characteristics, description of company
 */
+  if(!validateDate(dataEntry.date)) {
+    errorMsg += "Date is incorrectly formatted, ";
+    post = false;
+  }
   if(dataEntry.scope == "") {
     errorMsg += "Scope is required for all entries.";
     post = false;
@@ -99,7 +110,8 @@ purpose of the device, digital therapeutic, device characteristics, description 
   }
 }
 
-//todo Turns the data into a JSON format
+//Turns the data into a JSON format
+//todo add the tag hierarchy for the related field, tags on google sheet
 function createJsonObject() {
   var dataPoint = {};
   dataPoint.company = document.getElementById("company").value;
@@ -119,10 +131,6 @@ function createJsonObject() {
   dataPoint.sourceTextOther = document.getElementById("sourceTextOther").value;
 
   dataPoint.date = document.getElementById("date").value;
-  if(!validateDate(dataPoint.date)) {
-    errorMsg += "Date is incorrectly formatted, ";
-    post = false;
-  }
 
   dataPoint.editorNotes = document.getElementById("editorNotes").value;
 
@@ -281,20 +289,51 @@ function createJsonObject() {
 
 
   dataPoint.related = "";
-  /*
-  todo add tag hierarchy, meaning if a tag is related to something else, add those tags
-  see the google sheet with the tags hierarchies
-  add related tags to related
-  */
+
   return dataPoint;
 }
 
-//todo Sends the JSON to Elastic Search via API request (POST, PUT)
+
+//todo Send the JSON to Elastic Search via API request (POST, PUT)
 function postJsonObject(factData) {
-  console.log($.ajax());
-  $.ajax({
+  var endpoint = new AWS.Endpoint(domain);
+  var request = new AWS.HttpRequest(endpoint, region);
+
+  request.method = 'PUT';
+  request.path += index + '/' + type + '/' + id;
+  id++;
+  request.body = JSON.stringify(factData);
+  request.headers['host'] = domain;
+  request.headers['Content-Type'] = 'application/json';
+  // Content-Length is only needed for DELETE requests that include a request
+  // body, but including it for all requests doesn't seem to hurt anything.
+  request.headers['Content-Length'] = Buffer.byteLength(request.body);
+
+  var credentials = new AWS.EnvironmentCredentials('AWS');
+  var signer = new AWS.Signers.V4(request, 'es');
+  signer.addAuthorization(credentials, new Date());
+  console.log('Testing');
+  var client = new AWS.HttpClient();
+  client.handleRequest(request, null, function(response) {
+    console.log('Testing1');
+    console.log(response.statusCode + ' ' + response.statusMessage);
+    var responseBody = '';
+    response.on('data', function (chunk) {
+      responseBody += chunk;
+    });
+    response.on('end', function (chunk) {
+      console.log('Testing2');
+      console.log('Response body: ' + responseBody);
+    });
+  }, function(error) {
+    console.log('Testing3');
+    console.log('Error: ' + error);
+  });
+
+
+  /*$.ajax({
         type: 'POST',
-        url: 'https://vpc-fact-database-su2r3fktbpoyz4wx6fpxqjw5ja.us-east-2.es.amazonaws.com',
+        url: 'https://search-fact-test-yz276ecq43nejd37tqjsbioht4.us-east-2.es.amazonaws.com',
         contentType: 'application/json',
         data: factData,
         success: function(res) {
@@ -303,10 +342,9 @@ function postJsonObject(factData) {
         },
         error: function(jqxhr, status, exception) {
           console.log(jqxhr, status, exception);
-          
-        }
-      });
 
+        }
+      });*/
 }
 
 //Validates the date format
@@ -317,9 +355,15 @@ function validateDate(date) {
   }
   const dateRegExp = /^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/;
   const valid = dateRegExp.test(date);
-  console.log(valid);
   return valid;
 }
+
+//todo Query the Elastic Search domain
+function queryElastic(query) {
+  return query;
+}
+
+
 
 /**
 CURL Commands:
@@ -338,49 +382,129 @@ Test Data Point {
 
 
 Data Point {
-  "properties" : {
-    "companyName" : "string",
-    "sourceMobi" : "string",
-    "sourceCipher" : "string",
-    "sourceRock" : "string",
-    "sourceBiz" : "stringstring",
-    "sourceMed" : "string",
-    "sourceOther" : "string",
-    "sourceTextMobi" : "string",
-    "sourceTextCipher" : "string",
-    "sourceTextRock" : "string",
-    "sourceTextBiz" : "string",
-    "sourceTextMed" : "string",
-    "sourceTextOther" : "string",
-    "date" : "date",
-    "editorNotes" : "string",
-    "scope" : "string",
-    "scopeReason" : "string"
-    "deviceType" : "string",
-    "devicePurpose" : "string",
-    "therapeutic" : "string",
-    "digitalTherapeutic" : "string",
-    "classification" : "string",
-    "deviceCharacteristics" : "string",
-    companyDescription : "string",
-    "series" : "string",
-    "investment" : "integer",
-    "investmentDescription" : "string",
-    "leadInvestor" : "string",
-    "investors" : "string",
-    "hospital" : "string",
-    "website" : "string",
-    "disease" : "string",
-    "specialty" : "string",
-    "informationTechnology" : "string",
-    "medicalTechnology" : "string",
-    "regions" : "string",
-    "bodySystem" : "string",
-    "lifecycleStage" : "string",
-    "other" : "string",
-    "related" : "string",
+"properties": {
+      "companyName" : {
+        "type": "text"
+      },
+      "sourceMobi" : {
+        "type": "text"
+      },
+      "sourceCipher" : {
+        "type": "text"
+      },
+      "sourceRock" : {
+        "type": "text"
+      },
+      "sourceBiz" : {
+        "type": "text"
+      },
+      "sourceMed" : {
+        "type": "text"
+      },
+      "sourceOther" : {
+        "type": "text"
+      },
+      "sourceTextMobi" : {
+        "type": "text"
+      },
+      "sourceTextCipher" : {
+        "type": "text"
+      },
+      "sourceTextRock" : {
+        "type": "text"
+      },
+      "sourceTextBiz" : {
+        "type": "text"
+      },
+      "sourceTextMed" : {
+        "type": "text"
+      },
+      "sourceTextOther" : {
+        "type": "text"
+      },
+      "date" : {
+        "type": "date"
+      },
+      "editorNotes" : {
+        "type": "text"
+      },
+      "scope" : {
+        "type": "keyword"
+      },
+      "scopeReason" : {
+        "type": "text"
+      },
+      "deviceType" : {
+        "type": "object"
+      },
+      "devicePurpose" : {
+        "type": "object"
+      },
+      "therapeutic" : {
+        "type": "object"
+      },
+      "digitalTherapeutic" : {
+        "type": "keyword"
+      },
+      "classification" : {
+        "type": "text"
+      },
+      "deviceCharacteristics" : {
+        "type": "object"
+      },
+      "companyDescription" : {
+        "type": "text"
+      },
+      "series" : {
+        "type": "object"
+      },
+      "investment" : {
+        "type": "double"
+      },
+      "investmentDescription" : {
+        "type": "text"
+      },
+      "leadInvestor" : {
+        "type": "text"
+      },
+      "investors" : {
+        "type": "text"
+      },
+      "hospital" : {
+        "type": "keyword"
+      },
+      "website" : {
+        "type": "text"
+      },
+      "disease" : {
+        "type": "object"
+      },
+      "specialty" : {
+        "type": "object"
+      },
+      "informationTechnology" : {
+        "type": "object"
+      },
+      "medicalTechnology" : {
+        "type": "object"
+      },
+      "regions" : {
+        "type": "object"
+      },
+      "bodySystem" : {
+        "type": "object"
+      },
+      "lifecycleStage" : {
+        "type": "keyword"
+      },
+      "other" : {
+        "type": "object"
+      },
+      "related" : {
+        "type": "object"
+      }
+    }
   }
-}
 
 
 
