@@ -1,4 +1,4 @@
-var AWS = require('aws-sdk');
+//var AWS = require('aws-sdk');
 
 var region = 'us-east-2'; // e.g. us-west-1
 var domain = 'https://search-fact-test-yz276ecq43nejd37tqjsbioht4.us-east-2.es.amazonaws.com'; // e.g. search-domain.region.es.amazonaws.com
@@ -7,7 +7,7 @@ var type = '_doc';
 var id = '1';
 
 const form = document.querySelector('form');
-var dataToJSON = [];
+//var dataToJSON = [];
 let post = true;
 let errorMsg = "Pipeline failed because: ";
 
@@ -22,8 +22,8 @@ function dataPipeline() {
   console.log(data);
   dataValidation(data);
   if(post) {
-    dataToJSON.push(data);
-    postJsonObject(data);
+    //dataToJSON.push(data);
+    //postJsonObject(data);
     console.log("Logged");
   } else {
     alert(errorMsg);
@@ -296,7 +296,7 @@ function createJsonObject() {
 
 //todo Send the JSON to Elastic Search via API request (POST, PUT)
 function postJsonObject(factData) {
-  var endpoint = new AWS.Endpoint(domain);
+  /*var endpoint = new AWS.Endpoint(domain);
   var request = new AWS.HttpRequest(endpoint, region);
 
   request.method = 'PUT';
@@ -329,7 +329,7 @@ function postJsonObject(factData) {
     console.log('Testing3');
     console.log('Error: ' + error);
   });
-
+  */
 
   /*$.ajax({
         type: 'POST',
