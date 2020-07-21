@@ -1,5 +1,5 @@
 //var AWS = require('aws-sdk');
-
+console.log("Updated");
 var region = 'us-east-2'; // e.g. us-west-1
 var domain = 'https://search-fact-test-yz276ecq43nejd37tqjsbioht4.us-east-2.es.amazonaws.com'; // e.g. search-domain.region.es.amazonaws.com
 var index = 'fact-test';
